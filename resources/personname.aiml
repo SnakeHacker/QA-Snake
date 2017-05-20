@@ -1,0 +1,36 @@
+<aiml version="1.0.1" encoding="UTF-8">
+  <!-- personname.aiml -->
+  <category>
+    <pattern>* 是 谁</pattern>
+    <template>
+      <think>
+        <set name="star1"><star index="1"/></set>
+      </think>
+      #searchperson:<get name="star1" />
+    </template>
+  </category>
+
+
+  <category>
+    <pattern>* 的 * 是 谁</pattern>
+    <template>
+      <think>
+        <set name="star1"><star index="1"/></set>
+        <set name="star2"><star index="2"/></set>
+      </think>
+      #searchperson:<get name="star1" />:<get name="star2" />
+    </template>
+  </category>
+
+  <category>
+    <pattern>* 的 * 是 谁 *</pattern>
+    <template>
+      <think>
+        <set name="star1"><star index="1"/></set>
+        <set name="star2"><star index="2"/></set>
+      </think>
+      <srai><get name="star1" /> 的 <get name="star2" /> 是 谁</srai>
+    </template>
+  </category>
+
+</aiml>

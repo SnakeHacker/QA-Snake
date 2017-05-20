@@ -1,0 +1,31 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- bad.aiml -->
+
+  <category>
+    <pattern>你 个 *</pattern>
+    <template>
+      <think><set name="star"><star index="1"/></set></think>
+      <condition name="star" value="傻 逼">
+        <srai>愚蠢</srai>
+      </condition>
+
+      <condition name="star" value="蠢">
+        <srai>愚蠢</srai>
+      </condition>
+    </template>
+  </category>
+
+  <category>
+    <pattern>愚蠢</pattern>
+    <template>
+      <random>
+        <li>你以为你自己很聪明？</li>
+        <li>再说一句试试？</li>
+        <li>算你聪明行了吧</li>
+        <li>造我那个比较聪明，找他去。</li>
+      </random>
+    </template>
+  </category>
+
+
+</aiml>

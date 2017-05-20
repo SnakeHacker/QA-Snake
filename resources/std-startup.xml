@@ -1,0 +1,18 @@
+<aiml version="1.0.1" encoding="UTF-8">
+    <!-- std-std-startup.xml -->
+
+    <category>
+        <!-- 如果用户输入 "LOAD AIML B" -->
+        <pattern>LOAD DOC SNAKE</pattern>
+
+        <template>
+            <learn>./resources/Common conversation.aiml</learn>
+            <learn>./resources/bye.aiml</learn>
+            <learn>./resources/tools.aiml</learn>
+            <learn>./resources/bad.aiml</learn>
+            <learn>./resources/personname.aiml</learn>
+            <learn>./resources/OrdinaryQuestion.aiml</learn>
+        </template>
+    </category>
+
+</aiml>

@@ -1,0 +1,22 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- bye.aiml -->
+  <category>
+    <pattern>再见</pattern>
+    <template>
+    <random>
+        <li>88</li>
+        <li>拜拜</li>
+        <li>再见</li>
+        <li>慢走不送~</li>
+        <li>good bye</li>
+        <li>bye~</li>
+    </random>
+    </template>
+  </category>
+
+  <category><pattern>再见 *</pattern><template><srai>再见</srai> </template>  </category>
+  <category><pattern>* 再见</pattern><template><srai>再见</srai> </template>  </category>
+  <category><pattern>88</pattern><template><srai>再见</srai> </template>  </category>
+  <category><pattern>* 拜拜</pattern><template><srai>再见</srai> </template>  </category>
+  <category><pattern>拜拜 *</pattern><template><srai>再见</srai> </template>  </category>
+</aiml>

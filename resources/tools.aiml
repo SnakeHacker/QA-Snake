@@ -1,0 +1,40 @@
+<aiml version="1.0.1" encoding="UTF-8">
+  <!-- tools.aiml -->
+  <category>
+    <pattern>查 时间</pattern>
+    <template>
+      <date />
+    </template>
+  </category>
+  <category><pattern>今天 几号</pattern><template><srai>查 时间</srai> </template>  </category>
+  <category><pattern>现在 几点 *</pattern><template><srai>查 时间</srai> </template>  </category>
+  <category><pattern>现在 几点</pattern><template><srai>查 时间</srai> </template>  </category>
+
+  <category>
+    <pattern>* 查 * 到 * 的 *</pattern>
+    <template>
+      <think>
+        <set name="star1"><star index="1"/></set>
+        <set name="star2"><star index="2"/></set>
+        <set name="star3"><star index="3"/></set>
+        <set name="star4"><star index="4"/></set>
+      </think>
+
+      #查询=<get name="star2" />:<get name="star3" />:<get name="star4" />
+    </template>
+  </category>
+
+  <category>
+    <pattern>* 查一下 * 到 * 的 *</pattern>
+    <template>
+      <think>
+        <set name="star1"><star index="1"/></set>
+        <set name="star2"><star index="2"/></set>
+        <set name="star3"><star index="3"/></set>
+        <set name="star4"><star index="4"/></set>
+      </think>
+      <srai><get name="star1" /> 查 <get name="star2" /> 到 <get name="star3" /> 的 <get name="star4" /></srai>
+    </template>
+  </category>
+
+</aiml>
