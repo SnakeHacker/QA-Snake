@@ -15,12 +15,20 @@ def generalquery(query):
     # result = soup.find(id="1")
     for i in range(1,10):
         result = soup.find(id=i)
+        #判断是否有mu
         [s.extract() for s in soup(['script', 'style','img'])]
         print '============='
-        # print result.attrs
-        # print result['class']
+        print result.attrs
+        # print type(result.attrs)
+        if result.attrs.has_key('mu') and i == 1:
+            print '@@@@@@@@@@'
+            print result.attrs["mu"]
+            r = result.find(class_='op_exactqa_s_answer')
+            print r.get_text()
+            print '@@@@@@@@@@'
+        print result['class']
         # print result.get_text("|", strip=True)
-        print result.get_text(strip=True)
+        print result.get_text("||",strip=True)
         text += result.get_text()
         # print result
         # print result['id']
