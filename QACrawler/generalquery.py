@@ -39,7 +39,7 @@ def generalquery(query):
 
 
 
-query = "世界上最长的河流是？"
+query = "蒸汽机的发明者是？"
 text = generalquery(query)
 qlist = T.wordSegment(query).split(" ")
 
