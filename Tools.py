@@ -28,7 +28,7 @@ def get_html_bing(url):
     soup_bing = BeautifulSoup(requests.get(url=url, headers=headers).content.decode('utf-8'), "lxml")
 
     # 去除无关的标签
-    [s.extract() for s in soup_bing(['script', 'style','img'])]
+    # [s.extract() for s in soup_bing(['script', 'style','img'])]
     return soup_bing
 
 

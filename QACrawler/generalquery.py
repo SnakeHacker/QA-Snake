@@ -30,7 +30,7 @@ def generalquery(query):
         if results == None:
             break
 
-        print '============='
+        # print '============='
         # print results.attrs
         # print type(results.attrs)
         # print results['class']
@@ -55,13 +55,20 @@ def generalquery(query):
 
     #bing的摘要
     soup_bing = To.get_html_bing('https://www.bing.com/search?q='+query)
-    print soup_bing.prettify()
-    # 抓取bing前10条的摘要
-    for i in range(6,15):
-        results = soup_bing.find(class_="b_xlText b_emphText")
-        print "====="
-        print results
-        print "====="
+    # print soup_bing.prettify()
+    # 抓取bing的摘要
+    # 判断是否在知识图谱中
+    bingbaike = soup_bing.find(class_="b_xlText b_emphText")
+    if bingbaike != None:
+        flag = 1
+        answer = bingbaike.get_text()
+        # print "====="
+        # print answer
+        # print "====="
+        return answer
+    else:
+        results = soup_bing.find(id="b_results")
+        text += results.get_text()
 
 
     if flag == 0:
@@ -79,15 +86,17 @@ def generalquery(query):
             else:
                 temp += text[i]
 
+        # 找到含有关键词的句子
         key_sentences = {}
         for s in sentences:
             for k in keywords:
                 if k in s:
                     key_sentences[s]=1
 
+        # 识别人名
         target_list = {}
         for ks in key_sentences:
-            print ks
+            # print ks
             words = T.postag(ks)
             for w in words:
                 if w.flag == ("nr"):
@@ -104,15 +113,14 @@ def generalquery(query):
             if target_list[i]>maxfq:
                 answer = i
                 maxfq = target_list[i]
-            print i
-            print target_list[i]
+            # print i
+            # print target_list[i]
 
     return answer
 
 
 
-
-query = "谢婷婷的父亲是？"
+query = "java编程思想的作者是谁"
 ans = generalquery(query)
 print "~~~~~~~"
 print ans
