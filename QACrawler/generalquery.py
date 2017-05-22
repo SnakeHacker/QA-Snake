@@ -8,11 +8,11 @@ import re
 查询百度、Bing、（360）
 '''
 
-
 def generalquery(query):
     #分词 去停用词 抽取关键词
     keywords = []
     for k in T.postag(query):
+        # 只保留名词
         if k.flag.__contains__("n"):
             print k.flag
             print k.word
@@ -20,15 +20,16 @@ def generalquery(query):
 
     answer = ''
     text = ''
-    soup = To.get_html('https://www.baidu.com/s?wd='+query)
-    # 抓取前10条的摘要
+    # 找到百科的答案就置1
+    flag = 0
+    soup_baidu = To.get_html_baidu('https://www.baidu.com/s?wd='+query)
+
+    # 抓取百度前10条的摘要
     for i in range(1,10):
-        results = soup.find(id=i)
+        results = soup_baidu.find(id=i)
         if results == None:
-            answer = 'Empty'
             break
-        # 去除无关的标签
-        [s.extract() for s in soup(['script', 'style','img'])]
+
         print '============='
         # print results.attrs
         # print type(results.attrs)
@@ -44,72 +45,75 @@ def generalquery(query):
             else:
                 # print r.get_text()
                 answer = r.get_text()
-                continue
+                flag = 1
+                break
             print '@@@@@@@@@@'
         # print results.get_text("",strip=True)
         text += results.get_text()
     # print text
     # print type(text)
 
-    #分句
-    cutlist = [u"。",u".", u"_", u"-",u":",u"！",u"？"]
-    temp = ''
-    sentences = []
-    for i in range(0,len(text)):
-        if text[i] in cutlist:
-            if temp == '':
-                continue
-            else:
-                sentences.append(temp)
-            temp = ''
-        else:
-            temp += text[i]
-    key_sentences = {}
-    for s in sentences:
-        for k in keywords:
-            if k in s:
-                key_sentences[s]=1
+    #bing的摘要
+    soup_bing = To.get_html_bing('https://www.bing.com/search?q='+query)
+    print soup_bing.prettify()
+    # 抓取bing前10条的摘要
+    for i in range(6,15):
+        results = soup_bing.find(class_="b_xlText b_emphText")
+        print "====="
+        print results
+        print "====="
 
-    for ks in key_sentences:
-        print ks
+
+    if flag == 0:
+        #分句
+        cutlist = [u"。",u".", u"_", u"-",u":",u"！",u"？"]
+        temp = ''
+        sentences = []
+        for i in range(0,len(text)):
+            if text[i] in cutlist:
+                if temp == '':
+                    continue
+                else:
+                    sentences.append(temp)
+                temp = ''
+            else:
+                temp += text[i]
+
+        key_sentences = {}
+        for s in sentences:
+            for k in keywords:
+                if k in s:
+                    key_sentences[s]=1
+
+        target_list = {}
+        for ks in key_sentences:
+            print ks
+            words = T.postag(ks)
+            for w in words:
+                if w.flag == ("nr"):
+                    if target_list.has_key(w.word):
+                        target_list[w.word] += 1
+                    else:
+                        target_list[w.word] = 1
+
+        # 多搜索引擎匹配
+        maxfq = 0
+        for i in target_list:
+            if i in keywords:
+                continue
+            if target_list[i]>maxfq:
+                answer = i
+                maxfq = target_list[i]
+            print i
+            print target_list[i]
 
     return answer
 
 
-query = "窦靖童的生父是谁？"
+
+
+query = "谢婷婷的父亲是？"
 ans = generalquery(query)
 print "~~~~~~~"
 print ans
 print "~~~~~~~"
-
-qlist = T.wordSegment(query).split(" ")
-
-# 找出词频最高的几个单词
-# r1 = T.wordSegment(text)
-r1 = T.postag(ans)
-# r2 = r1.split(" ")
-# print r2
-
-# stopworddic = {}
-# fr = open('../resources/stopwords.txt')
-# line = fr.readline()
-# while line:
-#     stopworddic[line.strip()] = 1
-#     line = fr.readline()
-# fr.close()
-#  dic = {}
-# for r3 in r1:
-#     if r3.flag == 'x' or stopworddic.has_key(r3.word):
-#         continue
-#     else:
-#         if dic.has_key(r3):
-#             dic[r3] +=1
-#         else:
-#             dic[r3] =1
-#
-# for d in dic:
-#     if dic[d] >10 and d.word not in qlist:
-#         print d.word
-#         print d.flag
-#         print dic[d]
-#         print '========'

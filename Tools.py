@@ -1,20 +1,37 @@
 #coding:utf8
 
-import urllib,urllib2
+import urllib
 import re
 from bs4 import BeautifulSoup
+import requests
 
-def get_html(url):
-    pass
+'''
+获取百度搜索的结果
+'''
+def get_html_baidu(url):
     headers = {'User-Agent':'Mozilla/5.0 (X11; U; Linux i686)Gecko/20071127 Firefox/2.0.0.11'}
-    # req = urllib2.Request(url="http://baike.baidu.com/item/王思聪",headers=headers)
-    req = urllib2.Request(url=url,headers=headers)
-    socket = urllib2.urlopen(req)
-    content = socket.read()
-    socket.close()
-    soup = BeautifulSoup(content, "lxml")
+    soup_baidu = BeautifulSoup(requests.get(url=url, headers=headers).content.decode('utf-8'), "lxml")
+
+    # 去除无关的标签
+    [s.extract() for s in soup_baidu(['script', 'style','img'])]
     # print(soup.prettify())
-    return soup
+    return soup_baidu
+
+
+'''
+获取Bing搜索的结果
+'''
+def get_html_bing(url):
+    # url = 'http://global.bing.com/search?q='+word
+
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0'}
+    soup_bing = BeautifulSoup(requests.get(url=url, headers=headers).content.decode('utf-8'), "lxml")
+
+    # 去除无关的标签
+    [s.extract() for s in soup_bing(['script', 'style','img'])]
+    return soup_bing
+
+
 
 '''
 print answer
@@ -50,11 +67,11 @@ def ltptools(args):
 
 if __name__ == '__main__':
     pass
-    args = {
-        'api_key' : 'F1e194G841HHvTDhqb4JsGrHHw4Q0DYFbzKqgQNm',
-        'text' : '太阳为什么是圆的。',
-        'pattern' : 'srl',
-        'format' : 'json'
-    }
-    content = ltptools(args=args)
-    print content
+    # args = {
+    #     'api_key' : 'F1e194G841HHvTDhqb4JsGrHHw4Q0DYFbzKqgQNm',
+    #     'text' : '太阳为什么是圆的。',
+    #     'pattern' : 'srl',
+    #     'format' : 'json'
+    # }
+    # content = ltptools(args=args)
+    # print content
