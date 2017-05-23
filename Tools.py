@@ -3,7 +3,7 @@
 import urllib
 import re
 from bs4 import BeautifulSoup
-import requests
+import requests,time
 
 '''
 获取百度搜索的结果
@@ -23,7 +23,6 @@ def get_html_baidu(url):
 '''
 def get_html_bing(url):
     # url = 'http://global.bing.com/search?q='+word
-
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:22.0) Gecko/20100101 Firefox/22.0'}
     soup_bing = BeautifulSoup(requests.get(url=url, headers=headers).content.decode('utf-8'), "lxml")
 

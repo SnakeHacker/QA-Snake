@@ -4,6 +4,7 @@ import os
 import TextProcess as T
 import Tools as QAT
 from QACrawler import baike
+from QACrawler import search_summary
 
 if __name__ == '__main__':
 
@@ -32,11 +33,10 @@ if __name__ == '__main__':
 | '--------------' || '--------------' || '--------------' || '--------------' || '--------------' |
  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
  Eric：你好，我是Eric。╭(╯^╰)╮
-          '''
+    '''
     while True:
         input_message = raw_input("Enter your message >> ")
 
-        # 预判断
         if len(input_message) > 45:
             print mybot.respond("句子长度过长")
             continue
@@ -44,11 +44,12 @@ if __name__ == '__main__':
             print mybot.respond("无")
             continue
 
-
+        print input_message
         message = T.wordSegment(input_message)
+        # 去标点
         print 'word Seg:'+ message
         print '词性：'
-        T.postag(input_message)
+        words = T.postag(input_message)
 
 
         if message == 'q':
@@ -56,7 +57,11 @@ if __name__ == '__main__':
         else:
             response = mybot.respond(message)
 
-            if response[0] == '#':
+            if response == "":
+                ans = mybot.respond('找不到答案')
+                print 'Eric：' + ans
+
+            elif response[0] == '#':
                 print response
                 #加判断
                 res = response.split(':')
@@ -64,6 +69,7 @@ if __name__ == '__main__':
                 entity = str(res[1]).replace(" ","")
                 #属性
                 attr = str(res[2]).replace(" ","")
+
                 print entity+'<---->'+attr
 
                 ans = baike.query(entity,attr)
@@ -72,9 +78,22 @@ if __name__ == '__main__':
                 if type(ans)==list:
                     pass
                     print 'Eric：' + QAT.ptranswer(ans,False)
+
+                # 百度百科找不到
                 elif ans.decode('utf-8').__contains__(u'::找不到'):
-                    ans = mybot.respond('找不到答案')
-                    print 'Eric：' + ans
+                    #百度摘要+Bing摘要
+                    print "通用搜索"
+                    ans = search_summary.kwquery(input_message)
+
+                    if type(ans)==list:
+                        print 'Eric：' + ans[0].encode("utf8")
+
+                    #百度知道(待开发)
+
+
+                    # 还是找不到答案
+                    # ans = mybot.respond('找不到答案')
+                    # print 'Eric：' + ans
 
             else:
                 print 'Eric：' + response

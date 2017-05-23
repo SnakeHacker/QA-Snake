@@ -35,10 +35,10 @@ def ptr_Info(info):
 根据实体和属性查询百科列表中的属性值
 '''
 def query(entity,attr):
-    soup = To.get_html("http://baike.baidu.com/item/"+entity)
+    soup = To.get_html_baidu("http://baike.baidu.com/item/"+entity)
     basicInfo_block = soup.find(class_= 'basic-info cmn-clearfix')
     if basicInfo_block == None:
-        print 'info None'
+        # print 'info None'
         return attr + "::找不到"
     else:
         info  = get_info(basicInfo_block)
@@ -47,10 +47,10 @@ def query(entity,attr):
         #     print info[i]
         # print '-----------'
         if info.has_key(attr.decode('utf8')):
-            print 'has key'+attr.decode('utf8')
+            # print 'has key'+attr.decode('utf8')
             return info[attr.decode('utf8')]
         else:
-            print 'no key 进行同义词判断'
+            # print 'no key 进行同义词判断'
             # 同义词判断
             attr_list = T.load_baikeattr_name('./resources/Attribute_name.txt')
             attr = T.load_synonyms_word_inattr(attr,'./resources/SynonDic.txt',attr_list)

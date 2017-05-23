@@ -10,6 +10,7 @@ def jieba_initialize():
     jieba.load_userdict('./resources/QAattrdic.txt')
     jieba.initialize()
 
+
 '''
 Segment words by jieba
 '''
@@ -19,6 +20,7 @@ def wordSegment(text):
     result = " ".join(seg_list)
     return result
 
+
 '''
 POS Tagging
 '''
@@ -27,6 +29,7 @@ def postag(text):
     # for w in words:
     #     print w.word, w.flag
     return words
+
 
 '''
 proecss xiaohuangji corpus
@@ -118,4 +121,4 @@ def load_synonyms_word_inattr(word,synsdic,attr):
 if __name__ == '__main__':
     pass
     # tp2('./corpus/xiaohuangji50w_clean2.txt','./corpus/xiaohuangji50w_clean3.txt')
-    # postag("华中科技大学校长是谁？是周铭吉吗？")
+    # postag("华中科技大学校长是谁？")

@@ -1,18 +1,9 @@
 #coding:utf8
 
-import time,os
+from QACrawler import search_summary
 
-fr = open('./corpus/3760questions.txt','r')
-fw = open('./corpus/shishenme.txt','a')
+ans = search_summary.kwquery("上海海事大学的校长是？")
 
-line = fr.readline()
+print ans[0]
 
-while line:
-    if line.__contains__("是什么")or line.__contains__("什么是"):
-        print line
-        fw.write(line)
-    line = fr.readline()
-
-fr.close()
-fw.close()
 
