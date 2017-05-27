@@ -4,13 +4,7 @@
     <pattern>*</pattern>
     <template>
       <think><set name="star"><star /></set></think>
-      <random>
-        <li>唔... 周博士没有教我怎么回答"<get name="star" />"... </li>
-        <li>不知道啊</li>
-        <li>纳尼？？? </li>
-        <li>这我就不知道了</li>
-        <li>。。。不知道额</li>
-      </random>
+      #NoMatchingTemplate:<get name="star" />
     </template>
   </category>
 
@@ -22,6 +16,7 @@
         <li>纳尼？？? </li>
         <li>这我就不知道了</li>
         <li>。。。不知道额</li>
+        <li>唔... 周博士没有教我怎么回答... </li>
       </random>
     </template>
   </category>

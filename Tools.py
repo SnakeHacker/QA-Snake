@@ -37,7 +37,7 @@ print answer
 '''
 def ptranswer(ans,ifhtml):
     result = ''
-    print ans
+    # print ans
     for answer in ans:
         if ifhtml:
             print answer

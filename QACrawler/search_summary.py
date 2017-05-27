@@ -74,6 +74,7 @@ def kwquery(query):
         # print "====="
         return answer
     else:
+        print "Bing知识图谱找不到答案"
         results = soup_bing.find(id="b_results")
         text += results.get_text()
 
@@ -140,6 +141,8 @@ def kwquery(query):
             # print st[0]
             # print st[1]
             if i< 3:
+                # print st[0]
+                # print st[1]
                 answer.append(st[0])
         # print answer
 
@@ -148,7 +151,7 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "上海海洋大学的校长是?"
+    query = "2014网康科技的总裁是？"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:

@@ -60,40 +60,51 @@ if __name__ == '__main__':
             if response == "":
                 ans = mybot.respond('找不到答案')
                 print 'Eric：' + ans
-
+            # 百科搜索
             elif response[0] == '#':
-                print response
-                #加判断
-                res = response.split(':')
-                #实体
-                entity = str(res[1]).replace(" ","")
-                #属性
-                attr = str(res[2]).replace(" ","")
+                # 匹配百科
+                if response.__contains__("searchbaike"):
+                    print "searchbaike"
+                    print response
+                    #加判断
+                    res = response.split(':')
+                    #实体
+                    entity = str(res[1]).replace(" ","")
+                    #属性
+                    attr = str(res[2]).replace(" ","")
+                    print entity+'<---->'+attr
 
-                print entity+'<---->'+attr
+                    ans = baike.query(entity,attr)
+                    # 如果命中答案
+                    if type(ans) == list:
+                        print 'Eric：' + QAT.ptranswer(ans,False)
+                        continue
+                    elif ans.decode('utf-8').__contains__(u'::找不到'):
+                        #百度摘要+Bing摘要
+                        print "通用搜索"
+                        ans = search_summary.kwquery(input_message)
 
-                ans = baike.query(entity,attr)
-
-                #答案处理
-                if type(ans)==list:
-                    pass
-                    print 'Eric：' + QAT.ptranswer(ans,False)
-
-                # 百度百科找不到
-                elif ans.decode('utf-8').__contains__(u'::找不到'):
-                    #百度摘要+Bing摘要
-                    print "通用搜索"
+                # 匹配不到模版，通用查询
+                elif response.__contains__("NoMatchingTemplate"):
+                    print "NoMatchingTemplate"
                     ans = search_summary.kwquery(input_message)
 
-                    if type(ans)==list:
-                        print 'Eric：' + ans[0].encode("utf8")
 
-                    #百度知道(待开发)
+                if len(ans) == 0:
+                    ans = mybot.respond('找不到答案')
+                    print 'Eric：' + ans
+                elif len(ans) >1:
+                    print "不确定候选答案"
+                    print 'Eric: '
+                    for a in ans:
+                        print a.encode("utf8")
+                else:
+                    print 'Eric：' + ans[0].encode("utf8")
 
 
-                    # 还是找不到答案
-                    # ans = mybot.respond('找不到答案')
-                    # print 'Eric：' + ans
+                #百度知道(待开发)
 
+
+            # 匹配模版
             else:
                 print 'Eric：' + response
