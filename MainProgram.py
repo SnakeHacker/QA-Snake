@@ -57,6 +57,11 @@ if __name__ == '__main__':
         else:
             response = mybot.respond(message)
 
+            print "======="
+            print response
+            print "======="
+
+
             if response == "":
                 ans = mybot.respond('找不到答案')
                 print 'Eric：' + ans

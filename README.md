@@ -16,6 +16,11 @@
    直接运行MainProgram.py
    目前只支持命令行模式
 
+## 演示
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo01.png)
+![Demo02](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo02.png)
+![Demo03](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo03.png)
+
 ## 有问题反馈
 在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
 
