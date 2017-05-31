@@ -80,7 +80,13 @@ def kwquery(query):
             else:
                 print "百度知道图谱找到答案"
                 zhidao_soup = To.get_html_zhidao(url)
-                r = zhidao_soup.find(class_='bd answer').find('pre')
+
+                r = zhidao_soup.find(class_='bd answer')
+                if r == None:
+                    continue
+                else:
+                    r = r.find('pre')
+
                 answer.append(r.get_text())
                 flag = 1
                 break
