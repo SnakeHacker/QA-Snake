@@ -6,6 +6,7 @@ import time
 
 '''
 对百度、Bing 的搜索摘要进行答案的检索
+（需要加问句分类接口）
 '''
 
 def kwquery(query):
@@ -47,13 +48,43 @@ def kwquery(query):
             # print r
             if r == None:
                 print "百度知识图谱找不到答案"
-                continue
+                # continue
             else:
                 # print r.get_text()
                 print "百度知识图谱找到答案"
                 answer.append(r.get_text())
                 flag = 1
                 break
+
+        # 百度知道答案
+        if results.attrs.has_key('mu') and i == 1:
+            r = results.find(class_='op_best_answer_question_link')
+
+            if r == None:
+                print "百度知道图谱找不到答案"
+
+            else:
+                print "百度知道图谱找到答案"
+                url = r['href']
+                zhidao_soup = To.get_html_zhidao(url)
+                r = zhidao_soup.find(class_='bd answer').find('pre')
+                answer.append(r.get_text())
+                flag = 1
+                break
+
+        if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
+            url = results.find("h3").find("a")['href']
+            if url == None:
+                print "百度知道图谱找不到答案"
+                continue
+            else:
+                print "百度知道图谱找到答案"
+                zhidao_soup = To.get_html_zhidao(url)
+                r = zhidao_soup.find(class_='bd answer').find('pre')
+                answer.append(r.get_text())
+                flag = 1
+                break
+
         text += results.get_text()
 
     if flag == 1:
@@ -151,7 +182,7 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "2014网康科技的总裁是？"
+    query = "人为什么要吃饭呢"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:

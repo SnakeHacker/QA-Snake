@@ -10,7 +10,9 @@
             <learn>./resources/bye.aiml</learn>
             <learn>./resources/tools.aiml</learn>
             <learn>./resources/bad.aiml</learn>
-            <!--<learn>./resources/personname.aiml</learn>-->
+            <!--<learn>./resources/personname.aiml</learn>
+            <learn>./resources/tuling.aiml</learn>-->
+            <learn>./resources/funny.aiml</learn>
             <learn>./resources/OrdinaryQuestion.aiml</learn>
         </template>
     </category>

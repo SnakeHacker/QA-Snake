@@ -37,7 +37,7 @@ if __name__ == '__main__':
     while True:
         input_message = raw_input("Enter your message >> ")
 
-        if len(input_message) > 45:
+        if len(input_message) > 60:
             print mybot.respond("句子长度过长")
             continue
         elif input_message.strip() == '':
@@ -61,7 +61,6 @@ if __name__ == '__main__':
             print response
             print "======="
 
-
             if response == "":
                 ans = mybot.respond('找不到答案')
                 print 'Eric：' + ans
@@ -71,7 +70,6 @@ if __name__ == '__main__':
                 if response.__contains__("searchbaike"):
                     print "searchbaike"
                     print response
-                    #加判断
                     res = response.split(':')
                     #实体
                     entity = str(res[1]).replace(" ","")
@@ -106,9 +104,7 @@ if __name__ == '__main__':
                 else:
                     print 'Eric：' + ans[0].encode("utf8")
 
-
                 #百度知道(待开发)
-
 
             # 匹配模版
             else:
