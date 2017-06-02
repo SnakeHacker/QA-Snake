@@ -71,25 +71,25 @@ def kwquery(query):
                 answer.append(r.get_text())
                 flag = 1
                 break
-
-        if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
-            url = results.find("h3").find("a")['href']
-            if url == None:
-                print "百度知道图谱找不到答案"
-                continue
-            else:
-                print "百度知道图谱找到答案"
-                zhidao_soup = To.get_html_zhidao(url)
-
-                r = zhidao_soup.find(class_='bd answer')
-                if r == None:
+        if results.find("h3") != None:
+            if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
+                url = results.find("h3").find("a")['href']
+                if url == None:
+                    print "百度知道图谱找不到答案"
                     continue
                 else:
-                    r = r.find('pre')
+                    print "百度知道图谱找到答案"
+                    zhidao_soup = To.get_html_zhidao(url)
 
-                answer.append(r.get_text())
-                flag = 1
-                break
+                    r = zhidao_soup.find(class_='bd answer')
+                    if r == None:
+                        continue
+                    else:
+                        r = r.find('pre')
+
+                    answer.append(r.get_text())
+                    flag = 1
+                    break
 
         text += results.get_text()
 
@@ -194,3 +194,6 @@ if __name__ == '__main__':
     for a in ans:
         print a
     print "~~~~~~~"
+
+
+

@@ -34,15 +34,32 @@ if __name__ == '__main__':
  '----------------'  '----------------'  '----------------'  '----------------'  '----------------'
  Eric：你好，我是Eric。╭(╯^╰)╮
     '''
+    from socket import socket, AF_INET, SOCK_STREAM
 
+    sock = socket(AF_INET, SOCK_STREAM)
+    sock.bind(('192.168.1.103',50008))
+    sock.listen(5)
     while True:
-        input_message = raw_input("Enter your message >> ")
+        conn,addr = sock.accept()
+        data = conn.recv(4096)
+        input_message = data
+
+        print "input_message====="
+        print input_message
+        print "=========="
+
+
+        reply = ''
 
         if len(input_message) > 60:
             print mybot.respond("句子长度过长")
+            reply = mybot.respond("句子长度过长")
+            conn.send(reply)
             continue
-        elif input_message.strip() == '':
+        elif input_message.strip() == '无':
             print mybot.respond("无")
+            reply = mybot.respond("无")
+            conn.send(reply)
             continue
 
         print input_message
@@ -51,7 +68,6 @@ if __name__ == '__main__':
         print 'word Seg:'+ message
         print '词性：'
         words = T.postag(input_message)
-
 
         if message == 'q':
             exit()
@@ -65,6 +81,9 @@ if __name__ == '__main__':
             if response == "":
                 ans = mybot.respond('找不到答案')
                 print 'Eric：' + ans
+                reply = mybot.respond('找不到答案')
+                conn.send(reply)
+
             # 百科搜索
             elif response[0] == '#':
                 # 匹配百科
@@ -82,6 +101,8 @@ if __name__ == '__main__':
                     # 如果命中答案
                     if type(ans) == list:
                         print 'Eric：' + QAT.ptranswer(ans,False)
+                        reply = QAT.ptranswer(ans,False)
+                        conn.send(reply)
                         continue
                     elif ans.decode('utf-8').__contains__(u'::找不到'):
                         #百度摘要+Bing摘要
@@ -97,17 +118,25 @@ if __name__ == '__main__':
                 if len(ans) == 0:
                     ans = mybot.respond('找不到答案')
                     print 'Eric：' + ans
+                    reply = ans
+                    conn.send(reply)
+
                 elif len(ans) >1:
                     print "不确定候选答案"
                     print 'Eric: '
                     for a in ans:
                         print a.encode("utf8")
+                        reply += a.encode("utf8")+'\n'
+                    conn.send(reply)
                 else:
                     print 'Eric：' + ans[0].encode("utf8")
+                    reply = ans[0].encode("utf8")
+                    conn.send(reply)
 
                 #百度知道(待开发)
 
             # 匹配模版
             else:
                 print 'Eric：' + response
-
+                reply = response
+                conn.send(reply)
