@@ -1,10 +1,11 @@
 #coding:utf8
 import aiml
-import os
-from QACrawler import baike
+import os, sys
+
+from QA.QACrawler import baike
+from QA.Tools import Html_Tools as QAT
+from QA.Tools import TextProcess as T
 from QACrawler import search_summary
-from Tools import Html_Tools as QAT
-from Tools import TextProcess as T
 
 if __name__ == '__main__':
 
@@ -16,8 +17,15 @@ if __name__ == '__main__':
     os.chdir(mybot_path)
 
     mybot = aiml.Kernel()
-    mybot.learn("./resources/std-startup.xml")
-    mybot.respond('Load Doc Snake')
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0]+"./resources/std-startup.xml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/Common conversation.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/bye.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/tools.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/bad.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/funny.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/OrdinaryQuestion.aiml")
+
+    # mybot.respond('Load Doc Snake')
     #载入百科属性列表
 
     print '''

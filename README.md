@@ -16,8 +16,15 @@
    * pip install jieba
    * pip install aiml
    * pip install beautifulsoup4
-   ## 直接运行MainProgram.py
-   目前只支持命令行模式和Socket模式。
+   ##### 下载整个工程，直接运行MainProgram.py
+   ##### 或者 打开dist目录，下载 并安装 QASnake-0.1.0.tar.gz
+      pip install QASnake-0.1.0.tar.gz  
+   ##### 新建一个.py文件  
+      import QA.qa as qa  
+      if __name__ == '__main__':    
+        qa.qa()  
+   
+   目前只支持命令行模式和Socket模式，后期会提供更多的接口。
 
 # 演示
 ![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo01.png)

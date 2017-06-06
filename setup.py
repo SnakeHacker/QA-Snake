@@ -15,10 +15,10 @@ setup(
     url='http://www.snakehacker.me',
     author_email='616976756@qq.com',
     license='MIT',
-    packages=['BaiduMap', 'QA', 'QA.resources', 'demo', 'QACrawler', 'Tools'],
+    packages=['QA', 'QA.resources', 'QA.QACrawler', 'QA.Tools'],
     package_data={
         # If any package contains *.txt or *.rst files, include them:
-        '': ['*.txt', '*.aiml', '*.png'],
+        '': ['*.txt', '*.aiml', '*.png', '*.xml'],
     },
     zip_safe=False,
 )
