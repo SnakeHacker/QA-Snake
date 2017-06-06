@@ -1,16 +1,13 @@
 # QA-Snake
 ![Eric](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/resources/Eric-Logo.png)
 # QA-Snake是什么?
-目前QA-Snake是一个基于搜索引擎的自动问答机器人（Eric）
+目前QA-Snake是一个基于多搜索引擎的自动问答机器人（Eric）
 
 # Eric有哪些功能？
 
-* 支持问句类型有：
-    *  问人
-    *  问地点
-    *  地图查询
+* 问答
 * 闲聊
-* 运价查询
+* 运价查询（后期要做）
 
 # 使用方法
    测试环境为Python2.7(Anaconda2)
