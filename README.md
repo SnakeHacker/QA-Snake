@@ -21,9 +21,18 @@
 ![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo01.png)
 ![Demo02](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo02.png)
 ![Demo03](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/SnakeQADemo03.png)
+# Django写的网站展示
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa02.png)
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa03.png)
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa04.png)
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa05.png)
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa06.png)
+![Demo01](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/demo/qa07.png)
 
-## 有问题反馈
-在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
+
+## 有问题欢迎反馈
+在使用中有任何问题，欢迎反馈给我，我会尽我最大的能力去更正。
+可以用以下联系方式跟我交流：
 
 * 邮件(mingjizhou#foxmail.com, 把#换成@)
 * QQ: 616976756
