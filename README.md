@@ -2,6 +2,7 @@
 ![Eric](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/resources/Eric-Logo.png)
 # QA-Snake是什么?
 目前QA-Snake是一个基于多搜索引擎的自动问答机器人（Eric）
+开发历程戳这里：http://www.snakehacker.me/411
 
 # Eric有哪些功能？
 
