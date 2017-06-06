@@ -1,10 +1,11 @@
 #coding:utf8
+
 import aiml
 import os
-import TextProcess as T
-import Tools as QAT
 from QACrawler import baike
 from QACrawler import search_summary
+from Tools import Html_Tools as QAT
+from Tools import TextProcess as T
 
 if __name__ == '__main__':
 
@@ -97,7 +98,7 @@ if __name__ == '__main__':
                     attr = str(res[2]).replace(" ","")
                     print entity+'<---->'+attr
 
-                    ans = baike.query(entity,attr)
+                    ans = baike.query(entity, attr)
                     # 如果命中答案
                     if type(ans) == list:
                         print 'Eric：' + QAT.ptranswer(ans,False)

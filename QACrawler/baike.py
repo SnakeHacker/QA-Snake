@@ -1,7 +1,7 @@
 #coding:utf8
 
-import TextProcess as T
-import Tools as To
+from Tools import TextProcess as T
+from Tools import Html_Tools as To
 
 
 def get_info(basicInfo_block):

@@ -13,6 +13,7 @@
 # 使用方法
    测试环境为Python2.7(Anaconda2)
    需要额外安装的Python包有：
+   * pip install jieba
    * pip install aiml
    * pip install beautifulsoup4
    ## 直接运行MainProgram.py

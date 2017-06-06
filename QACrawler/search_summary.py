@@ -1,7 +1,7 @@
 #coding:utf8
 
-import Tools as To
-import TextProcess as T
+from Tools import Html_Tools as To
+from Tools import TextProcess as T
 from urllib import quote
 import time
 
