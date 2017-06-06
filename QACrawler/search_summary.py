@@ -2,6 +2,7 @@
 
 import Tools as To
 import TextProcess as T
+from urllib import quote
 import time
 
 '''
@@ -26,13 +27,13 @@ def kwquery(query):
     flag = 0
 
     # 抓取百度前10条的摘要
-    soup_baidu = To.get_html_baidu('https://www.baidu.com/s?wd='+query)
-    # print soup_baidu.get_text()
+    soup_baidu = To.get_html_baidu('https://www.baidu.com/s?wd='+quote(query))
 
     for i in range(1,10):
         if soup_baidu == None:
             break
         results = soup_baidu.find(id=i)
+
         if results == None:
             print "百度摘要找不到答案"
             break
@@ -52,17 +53,46 @@ def kwquery(query):
             else:
                 # print r.get_text()
                 print "百度知识图谱找到答案"
-                answer.append(r.get_text())
+                answer.append(r.get_text().strip())
                 flag = 1
                 break
+
+        #古诗词盘判断
+        if results.attrs.has_key('mu') and i == 1:
+            r = results.find(class_="op_exactqa_detail_s_answer")
+
+            if r == None:
+                print "百度诗词找不到答案"
+                # continue
+            else:
+                # print r.get_text()
+                print "百度诗词找到答案"
+                answer.append(r.get_text().strip())
+                flag = 1
+                break
+
+
+        #计算器
+        if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/static/calculator/calculator.html'):
+
+            r = results.find('div').find_all('td')[1].find_all('div')[1]
+
+            if r == None:
+                print "计算器找不到答案"
+                # continue
+            else:
+                # print r.get_text()
+                print "计算器找到答案"
+                answer.append(r.get_text().strip())
+                flag = 1
+                break
+
 
         # 百度知道答案
         if results.attrs.has_key('mu') and i == 1:
             r = results.find(class_='op_best_answer_question_link')
-
             if r == None:
                 print "百度知道图谱找不到答案"
-
             else:
                 print "百度知道图谱找到答案"
                 url = r['href']
@@ -71,6 +101,7 @@ def kwquery(query):
                 answer.append(r.get_text())
                 flag = 1
                 break
+
         if results.find("h3") != None:
             if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
                 url = results.find("h3").find("a")['href']
@@ -87,9 +118,11 @@ def kwquery(query):
                     else:
                         r = r.find('pre')
 
-                    answer.append(r.get_text())
+                    answer.append(r.get_text().strip())
                     flag = 1
                     break
+
+
 
         text += results.get_text()
 
@@ -97,8 +130,10 @@ def kwquery(query):
         return answer
 
 
+
+
     #获取bing的摘要
-    soup_bing = To.get_html_bing('https://www.bing.com/search?q='+query)
+    soup_bing = To.get_html_bing('https://www.bing.com/search?q='+quote(query))
     # 判断是否在Bing的知识图谱中
     bingbaike = soup_bing.find(class_="b_xlText b_emphText")
 
@@ -188,7 +223,7 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "人为什么要吃饭呢"
+    query = "\"床前明月光\"的下一句是什么"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:

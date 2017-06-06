@@ -105,7 +105,7 @@ if __name__ == '__main__':
                 else:
                     print 'Eric：' + ans[0].encode("utf8")
 
-                #百度知道(待开发)
+
 
             # 匹配模版
             else:
