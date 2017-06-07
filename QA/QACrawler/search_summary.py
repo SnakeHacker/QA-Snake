@@ -27,6 +27,7 @@ def kwquery(query):
     # 找到百科的答案就置1
     flag = 0
 
+
     # 抓取百度前10条的摘要
     soup_baidu = To.get_html_baidu('https://www.baidu.com/s?wd='+quote(query))
 
@@ -57,6 +58,8 @@ def kwquery(query):
                 answer.append(r.get_text().strip())
                 flag = 1
                 break
+
+
 
         #古诗词盘判断
         if results.attrs.has_key('mu') and i == 1:
@@ -104,6 +107,7 @@ def kwquery(query):
                 break
 
         if results.find("h3") != None:
+            # 百度知道
             if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
                 url = results.find("h3").find("a")['href']
                 if url == None:
@@ -117,21 +121,34 @@ def kwquery(query):
                     if r == None:
                         continue
                     else:
-                        r = r.find('pre')
+                        r = r.get_text('pre')
 
                     answer.append(r.get_text().strip())
                     flag = 1
                     break
 
+            # 百度百科
+            if results.find("h3").find("a").get_text().__contains__(u"百度百科") and i == 1:
+                url = results.find("h3").find("a")['href']
+                if url == None:
+                    print "百度百科找不到答案"
+                    continue
+                else:
+                    print "百度百科找到答案"
+                    baike_soup = To.get_html_baike(url)
 
-
+                    r = baike_soup.find(class_='lemma-summary')
+                    if r == None:
+                        continue
+                    else:
+                        r = r.get_text().replace("\n","").strip()
+                    answer.append(r)
+                    flag = 1
+                    break
         text += results.get_text()
 
     if flag == 1:
         return answer
-
-
-
 
     #获取bing的摘要
     soup_bing = To.get_html_bing('https://www.bing.com/search?q='+quote(query))
@@ -149,6 +166,31 @@ def kwquery(query):
     else:
         print "Bing知识图谱找不到答案"
         results = soup_bing.find(id="b_results")
+        bing_list = results.find_all('li')
+        for bl in bing_list:
+            temp =  bl.get_text()
+            if temp.__contains__(u" - 必应网典"):
+                print "查找Bing网典"
+                url = bl.find("h2").find("a")['href']
+                if url == None:
+                    print "Bing网典找不到答案"
+                    continue
+                else:
+                    print "Bing网典找到答案"
+                    bingwd_soup = To.get_html_bingwd(url)
+
+                    r = bingwd_soup.find(class_='bk_card_desc').find("p")
+                    if r == None:
+                        continue
+                    else:
+                        r = r.get_text().replace("\n","").strip()
+                    answer.append(r)
+                    flag = 1
+                    break
+
+        if flag == 1:
+            return answer
+
         text += results.get_text()
 
     # print text
@@ -224,7 +266,7 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "王健林的儿子是？"
+    query = "姚明是谁"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:
