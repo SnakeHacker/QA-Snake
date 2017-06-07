@@ -18,7 +18,13 @@ if __name__ == '__main__':
     os.chdir(mybot_path)
 
     mybot = aiml.Kernel()
-    mybot.learn("./resources/std-startup.xml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0]+"./resources/std-startup.xml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/Common conversation.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/bye.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/tools.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/bad.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/funny.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "./resources/OrdinaryQuestion.aiml")
     mybot.respond('Load Doc Snake')
     #载入百科属性列表
 
@@ -134,8 +140,6 @@ if __name__ == '__main__':
                     print 'Eric：' + ans[0].encode("utf8")
                     reply = ans[0].encode("utf8")
                     conn.send(reply)
-
-                #百度知道(待开发)
 
             # 匹配模版
             else:

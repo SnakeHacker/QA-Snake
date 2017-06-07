@@ -224,7 +224,7 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "东京什么最火"
+    query = "王健林的儿子是？"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:
