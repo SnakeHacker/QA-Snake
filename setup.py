@@ -3,8 +3,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='QASnake',
-    version='0.1.0',
-    description='QA Snake v0.1.0',
+    version='0.1.1',
+    description='QA Snake v0.1.1',
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
