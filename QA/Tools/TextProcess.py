@@ -8,7 +8,7 @@ import os,sys
 initialize jieba Segment
 '''
 def jieba_initialize():
-    jieba.load_userdict(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'./resources/QAattrdic.txt')
+    jieba.load_userdict(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'/resources/QAattrdic.txt')
     jieba.initialize()
 
 
