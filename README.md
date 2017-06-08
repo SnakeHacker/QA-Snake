@@ -15,6 +15,7 @@
    需要额外安装的Python包有：
    * pip install jieba
    * pip install aiml
+   * pip install lxml
    * pip install beautifulsoup4
    ##### 下载整个工程，直接运行MainProgram.py
    ##### 或者 打开dist目录，下载 并安装 QASnake-0.1.0.tar.gz
