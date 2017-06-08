@@ -61,7 +61,7 @@ def kwquery(query):
 
 
 
-        #古诗词盘判断
+        #古诗词判断
         if results.attrs.has_key('mu') and i == 1:
             r = results.find(class_="op_exactqa_detail_s_answer")
 
@@ -154,16 +154,18 @@ def kwquery(query):
     soup_bing = To.get_html_bing('https://www.bing.com/search?q='+quote(query))
     # 判断是否在Bing的知识图谱中
     # bingbaike = soup_bing.find(class_="b_xlText b_emphText")
-    bingbaike = soup_bing.find(class_="bm_box").find_all(class_="b_vList")[1].find("li")
+    bingbaike = soup_bing.find(class_="bm_box")
 
     if bingbaike != None:
-        print "Bing知识图谱找到答案"
-        flag = 1
-        answer.append(bingbaike.get_text())
-        # print "====="
-        # print answer
-        # print "====="
-        return answer
+        if bingbaike.find_all(class_="b_vList")[1] != None:
+            if bingbaike.find_all(class_="b_vList")[1].find("li") != None:
+                print "Bing知识图谱找到答案"
+                flag = 1
+                answer.append(bingbaike.get_text())
+                # print "====="
+                # print answer
+                # print "====="
+                return answer
     else:
         print "Bing知识图谱找不到答案"
         results = soup_bing.find(id="b_results")
