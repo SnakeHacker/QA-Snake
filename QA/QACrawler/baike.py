@@ -53,8 +53,8 @@ def query(entity,attr):
         else:
             # print 'no key 进行同义词判断'
             # 同义词判断
-            attr_list = T.load_baikeattr_name(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'./resources/Attribute_name.txt')
-            attr = T.load_synonyms_word_inattr(attr,os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'./resources/SynonDic.txt',attr_list)
+            attr_list = T.load_baikeattr_name(os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'/resources/Attribute_name.txt')
+            attr = T.load_synonyms_word_inattr(attr,os.path.dirname(os.path.split(os.path.realpath(__file__))[0])+'/resources/SynonDic.txt',attr_list)
             if info.has_key(attr.decode('utf8')):
                 return info[attr.decode('utf8')]
             else:
