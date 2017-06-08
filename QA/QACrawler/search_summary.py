@@ -121,7 +121,7 @@ def kwquery(query):
                     if r == None:
                         continue
                     else:
-                        r = r.get_text('pre')
+                        r = r.find('pre')
 
                     answer.append(r.get_text().strip())
                     flag = 1
