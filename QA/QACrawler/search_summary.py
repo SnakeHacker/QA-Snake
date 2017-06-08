@@ -153,7 +153,8 @@ def kwquery(query):
     #获取bing的摘要
     soup_bing = To.get_html_bing('https://www.bing.com/search?q='+quote(query))
     # 判断是否在Bing的知识图谱中
-    bingbaike = soup_bing.find(class_="b_xlText b_emphText")
+    # bingbaike = soup_bing.find(class_="b_xlText b_emphText")
+    bingbaike = soup_bing.find(class_="bm_box").find_all(class_="b_vList")[1].find("li")
 
     if bingbaike != None:
         print "Bing知识图谱找到答案"
