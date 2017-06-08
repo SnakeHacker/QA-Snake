@@ -11,13 +11,13 @@
 * 运价查询（后期要做）
 
 # 使用方法
-   测试环境为Python2.7(Anaconda2)
+   测试环境为windows7 + Python2.7(Anaconda2)
    需要额外安装的Python包有：
    * pip install jieba
    * pip install aiml
    * pip install lxml
    * pip install beautifulsoup4
-   ##### 下载整个工程，直接运行MainProgram.py
+   ##### 下载整个工程，直接运行QA-Snake/QA/MainProgram.py
    ##### 或者 打开dist目录，下载 并安装 QASnake-0.1.0.tar.gz
       pip install QASnake-0.1.0.tar.gz  
    ##### 新建一个.py文件  
