@@ -75,6 +75,20 @@ def kwquery(query):
                 flag = 1
                 break
 
+        #古诗词判断
+        if results.attrs.has_key('mu') and i == 1:
+            r = results.find(class_="op_exactqa_detail_s_answer")
+
+            if r == None:
+                print "百度诗词找不到答案"
+                # continue
+            else:
+                # print r.get_text()
+                print "百度诗词找到答案"
+                answer.append(r.get_text().strip())
+                flag = 1
+                break
+
 
         #计算器
         if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/static/calculator/calculator.html'):
@@ -108,7 +122,7 @@ def kwquery(query):
 
         if results.find("h3") != None:
             # 百度知道
-            if results.find("h3").find("a").get_text().__contains__(u"百度知道") and i == 1:
+            if results.find("h3").find("a").get_text().__contains__(u"百度知道") and (i == 1 or i ==2):
                 url = results.find("h3").find("a")['href']
                 if url == None:
                     print "百度知道图谱找不到答案"
@@ -122,13 +136,12 @@ def kwquery(query):
                         continue
                     else:
                         r = r.find('pre')
-
                     answer.append(r.get_text().strip())
                     flag = 1
                     break
 
             # 百度百科
-            if results.find("h3").find("a").get_text().__contains__(u"百度百科") and i == 1:
+            if results.find("h3").find("a").get_text().__contains__(u"百度百科") and (i == 1 or i ==2):
                 url = results.find("h3").find("a")['href']
                 if url == None:
                     print "百度百科找不到答案"
@@ -269,12 +282,9 @@ def kwquery(query):
 
 if __name__ == '__main__':
     pass
-    query = "姚明是谁"
+    query = "中国四大美女"
     ans = kwquery(query)
     print "~~~~~~~"
     for a in ans:
         print a
     print "~~~~~~~"
-
-
-
