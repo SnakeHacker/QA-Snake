@@ -37,4 +37,16 @@
     </template>
   </category>
 
+
+  <category>
+    <pattern>天气</pattern>
+    <template>
+      天气戳这里：http://www.weather.com.cn/weather/101020100.shtml
+    </template>
+  </category>
+  <category><pattern>今天天气 *</pattern><template><srai>天气</srai> </template>  </category>
+  <category><pattern>今天天气</pattern><template><srai>天气</srai> </template>  </category>
+  <category><pattern>今天 * 天气</pattern><template><srai>天气</srai> </template>  </category>
+  <category><pattern>* 天气 *</pattern><template><srai>天气</srai> </template>  </category>
+
 </aiml>

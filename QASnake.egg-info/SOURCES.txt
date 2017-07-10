@@ -3,6 +3,7 @@ QA/MainProgram.py
 QA/__init__.py
 QA/qa.py
 QA/server.py
+QA/test.py
 QASnake.egg-info/PKG-INFO
 QASnake.egg-info/SOURCES.txt
 QASnake.egg-info/dependency_links.txt

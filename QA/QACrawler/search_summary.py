@@ -24,7 +24,7 @@ def kwquery(query):
 
     answer = []
     text = ''
-    # 找到百科的答案就置1
+    # 找到答案就置1
     flag = 0
 
 
@@ -47,11 +47,8 @@ def kwquery(query):
         if results.attrs.has_key('mu') and i == 1:
             # print results.attrs["mu"]
             r = results.find(class_='op_exactqa_s_answer')
-
-            # print r
             if r == None:
                 print "百度知识图谱找不到答案"
-                # continue
             else:
                 # print r.get_text()
                 print "百度知识图谱找到答案"
@@ -63,10 +60,8 @@ def kwquery(query):
         #古诗词判断
         if results.attrs.has_key('mu') and i == 1:
             r = results.find(class_="op_exactqa_detail_s_answer")
-
             if r == None:
                 print "百度诗词找不到答案"
-                # continue
             else:
                 # print r.get_text()
                 print "百度诗词找到答案"
@@ -77,10 +72,8 @@ def kwquery(query):
         #万年历 & 日期
         if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/calendar'):
             r = results.find(class_="op-calendar-content")
-
             if r == None:
                 print "百度万年历找不到答案"
-                # continue
             else:
                 # print r.get_text()
                 print "百度万年历找到答案"
@@ -102,11 +95,10 @@ def kwquery(query):
                 flag = 1
                 break
 
+
         #计算器
         if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/static/calculator/calculator.html'):
-
             r = results.find('div').find_all('td')[1].find_all('div')[1]
-
             if r == None:
                 print "计算器找不到答案"
                 # continue

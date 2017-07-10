@@ -19,12 +19,12 @@ if __name__ == '__main__':
 
     mybot = aiml.Kernel()
     mybot.learn(os.path.split(os.path.realpath(__file__))[0]+"/resources/std-startup.xml")
-    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/Common conversation.aiml")
     mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/bye.aiml")
     mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/tools.aiml")
     mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/bad.aiml")
     mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/funny.aiml")
     mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/OrdinaryQuestion.aiml")
+    mybot.learn(os.path.split(os.path.realpath(__file__))[0] + "/resources/Common conversation.aiml")
     mybot.respond('Load Doc Snake')
     #载入百科属性列表
 
