@@ -60,7 +60,6 @@ def kwquery(query):
                 break
 
 
-
         #古诗词判断
         if results.attrs.has_key('mu') and i == 1:
             r = results.find(class_="op_exactqa_detail_s_answer")
@@ -75,20 +74,33 @@ def kwquery(query):
                 flag = 1
                 break
 
-        #古诗词判断
-        if results.attrs.has_key('mu') and i == 1:
-            r = results.find(class_="op_exactqa_detail_s_answer")
+        #万年历 & 日期
+        if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/calendar'):
+            r = results.find(class_="op-calendar-content")
 
             if r == None:
-                print "百度诗词找不到答案"
+                print "百度万年历找不到答案"
                 # continue
             else:
                 # print r.get_text()
-                print "百度诗词找到答案"
-                answer.append(r.get_text().strip())
+                print "百度万年历找到答案"
+                answer.append(r.get_text().strip().replace("\n","").replace(" ",""))
                 flag = 1
                 break
 
+        if results.attrs.has_key('tpl') and i == 1 and results.attrs['tpl'].__contains__('calendar_new'):
+            r = results.attrs['fk'].replace("6018_","")
+            print r
+
+            if r == None:
+                print "百度万年历新版找不到答案"
+                # continue
+            else:
+                # print r.get_text()
+                print "百度万年历新版找到答案"
+                answer.append(r)
+                flag = 1
+                break
 
         #计算器
         if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/static/calculator/calculator.html'):
