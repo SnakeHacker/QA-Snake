@@ -45,7 +45,6 @@
 可以用以下联系方式跟我交流：
 
 * 邮件(mingjizhou#foxmail.com, 把#换成@)
-* QQ: 616976756
 * blog: snakehacker.me
 
 
