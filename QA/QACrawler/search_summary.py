@@ -120,6 +120,9 @@ def kwquery(query):
                 url = r['href']
                 zhidao_soup = To.get_html_zhidao(url)
                 r = zhidao_soup.find(class_='bd answer').find('pre')
+                if r == None:
+                    r = zhidao_soup.find(class_='bd answer').find(class_='line content')
+
                 answer.append(r.get_text())
                 flag = 1
                 break
@@ -140,6 +143,8 @@ def kwquery(query):
                         continue
                     else:
                         r = r.find('pre')
+                        if r == None :
+                            r = zhidao_soup.find(class_='bd answer').find(class_='line content')
                     answer.append(r.get_text().strip())
                     flag = 1
                     break
