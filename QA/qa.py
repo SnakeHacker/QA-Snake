@@ -44,7 +44,7 @@ def qa(question):
     '''
 
 
-    input_message = raw_input("Enter your message >> ")
+    input_message = question
 
     if len(input_message) > 60:
         print mybot.respond("句子长度过长")
