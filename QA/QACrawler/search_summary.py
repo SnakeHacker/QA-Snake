@@ -98,7 +98,8 @@ def kwquery(query):
 
         #计算器
         if results.attrs.has_key('mu') and i == 1 and results.attrs['mu'].__contains__('http://open.baidu.com/static/calculator/calculator.html'):
-            r = results.find('div').find_all('td')[1].find_all('div')[1]
+            # r = results.find('div').find_all('td')[1].find_all('div')[1]
+            r = results.find(class_="op_new_val_screen_result")
             if r == None:
                 print "计算器找不到答案"
                 # continue
