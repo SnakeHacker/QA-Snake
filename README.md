@@ -1,7 +1,7 @@
 # QA-Snake
 ![Eric](https://raw.githubusercontent.com/SnakeHacker/QA-Snake/master/QA/resources/Eric-Logo.png)
 # QA-Snake是什么?
-目前QA-Snake是上海海事大学信息工程学院航运大数据实验室开发的一个基于多搜索引擎的自动问答机器人（Eric）
+目前QA-Snake是上海海事大学信息工程学院航运大数据实验室开发的一个基于多搜索引擎的自动问答机器人（Eric）作者:周铭吉。目前开放了部分关于搜索的代码 满足了大部分中文通用问答需求
 开发历程戳这里：http://www.snakehacker.me/411
 
 # Eric有哪些功能？
